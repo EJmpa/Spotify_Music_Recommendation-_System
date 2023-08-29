@@ -1,2 +1,2 @@
-# Spotify_Music_Recommendation-_System
+# Spotify_Music_Recommendation_System
 Spotify Music Recommendation System
