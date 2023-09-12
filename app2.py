@@ -10,7 +10,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="",
                                                            client_secret=""))
 
 # Load dataset
-uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+uploaded_file = st.file_uploader("data/data.csv", type="csv")
 if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
 
