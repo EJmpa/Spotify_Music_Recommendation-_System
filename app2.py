@@ -36,9 +36,6 @@ data = pd.read_csv('data/data.csv')
 def load_data(filename):
     return pd.read_csv(filename)
 
-# Using the function to load the data
-data = load_data("./data/data.csv")
-
 # Function to scale features
 def scale_features(data):
     features = data[['valence', 'energy', 'danceability', 'acousticness', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo']]
@@ -165,7 +162,9 @@ elif page_selection == "Data Analysis":
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data.csv')
+            st.title('The first lines of the data dataset')
             st.write(data.head())
+            st.title('statistical summary of the dataset')
             st.write(data.describe())
             st.write(data.info())
             
@@ -244,12 +243,7 @@ elif page_selection == "Data Analysis":
                 st.subheader('Descriptive Statistics for data_w_genres.csv')
                 st.write(data_w_genres.describe())
             
-                # Missing Data Visualization
-                st.subheader('Missing Data Visualization for data_w_genres.csv')
-                msno.matrix(data_w_genres)
-                st.pyplot()
-            
-            
+                            
 
     elif dataset_selection == "data_by_genres":
         if st.button('Load and Analyze data_by_genres.csv'):
@@ -259,19 +253,16 @@ elif page_selection == "Data Analysis":
             st.subheader('Descriptive Statistics for data_by_genres.csv')
             st.write(data_by_genres.describe())
             
-            # Missing Data Visualization
-            st.subheader('Missing Data Visualization for data_by_genres.csv')
-            msno.matrix(data_by_genres)
-            st.pyplot()
+            
           
 
-    elif dataset_selection == "data_by_genres":
-        if st.button('Load and Analyze data_by_genres.csv'):
-            data_w_genres = load_data("./data/data_by_genres.csv")
+    elif dataset_selection == "data_by_artist":
+        if st.button('Load and Analyze data_by_artist.csv'):
+            data_w_genres = load_data("./data/data_by_artist.csv")
             
             # Descriptive Statistics
-            st.subheader('Descriptive Statistics for data_w_genres.csv')
-            st.write(data_by_genres.describe())
+            st.subheader('Descriptive Statistics for data_w_artist.csv')
+            st.write(data_by_artist.describe())
             
             
             
