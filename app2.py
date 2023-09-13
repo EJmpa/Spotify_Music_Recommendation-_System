@@ -241,18 +241,18 @@ elif page_selection == "Data Analysis":
 
 
 
-        elif dataset_selection == "data_w_genres":
-            if st.button('Load and Analyze data_w_genres.csv'):
-                data_w_genres = load_data("./data/data_w_genres.csv")
+    elif dataset_selection == "data_w_genres":
+        if st.button('Load and Analyze data_w_genres.csv'):
+            data_w_genres = load_data("./data/data_w_genres.csv")
             
-                # Descriptive Statistics
-                st.subheader('Descriptive Statistics for data_w_genres.csv')
-                st.write(data_w_genres.describe())
+            # Descriptive Statistics
+            st.subheader('Descriptive Statistics for data_w_genres.csv')
+            st.write(data_w_genres.describe())
             
-                # Missing Data Visualization
-                st.subheader('Missing Data Visualization for data_w_genres.csv')
-                msno.matrix(data_w_genres)
-                st.pyplot()
+            # Missing Data Visualization
+            st.subheader('Missing Data Visualization for data_w_genres.csv')
+            msno.matrix(data_w_genres)
+            st.pyplot()
             
             
 
