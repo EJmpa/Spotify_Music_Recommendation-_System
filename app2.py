@@ -6,13 +6,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 
 # Spotify API Setup
-sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="",
-                                                           client_secret=""))
+
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="5c31e738069944f5bfe87e77c50b4baa",
+                                                           client_secret="b7432a163d2b483babef62ec336efd4b"))
 
 # Load dataset
-uploaded_file = st.file_uploader("data/data.csv", type="csv")
-if uploaded_file is not None:
-    data = pd.read_csv(uploaded_file)
+#uploaded_file = st.file_uploader("./data/data.csv", type="csv")
+#if uploaded_file is not None:
+data = pd.read_csv('data/data.csv')
 
 
 # Preprocessing and KMeans clustering for mood assignment
