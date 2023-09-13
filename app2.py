@@ -18,8 +18,8 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 
 # Spotify API Setup
 
-sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="5c31e738069944f5bfe87e77c50b4baa",
-                                                           client_secret="b7432a163d2b483babef62ec336efd4b"))
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="REPLACE_WITH_CORRECT_ID",
+                                                           client_secret="REPLACE_WITH_CORRECT_CLIENT_SECRET"))
 
 
 # Columns to load from the dataset
@@ -28,7 +28,7 @@ columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acous
 # Load dataset
 #uploaded_file = st.file_uploader("./data/data.csv", type="csv")
 #if uploaded_file is not None:
-data = pd.read_csv('data/data.csv')
+#data = pd.read_csv('data/data.csv')
 
 
 # Streamlit's cache mechanism to load datasets efficiently
