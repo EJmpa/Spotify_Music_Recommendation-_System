@@ -37,6 +37,8 @@ def load_data(filename):
     return pd.read_csv(filename)
 
 data = load_data("./data/data.csv")
+
+
 # Function to scale features
 def scale_features(data):
     features = data[['valence', 'energy', 'danceability', 'acousticness', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo']]
@@ -236,19 +238,19 @@ elif page_selection == "Data Analysis":
 
 
 
-        elif dataset_selection == "data_w_genres":
-            if st.button('Load and Analyze data_w_genres.csv'):
-                data_w_genres = load_data("./data/data_w_genres.csv")
+    elif dataset_selection == "data_w_genres":
+        if st.button('Load and Analyze data_w_genres.csv'):
+             data_w_genres = load_data("./data/data_w_genres.csv")
             
-                # Descriptive Statistics
-                st.subheader('Descriptive Statistics for data_w_genres.csv')
-                st.write(data_w_genres.describe())
+             # Descriptive Statistics
+             st.subheader('Descriptive Statistics for data_w_genres.csv')
+             st.write(data_w_genres.describe())
             
                             
 
     elif dataset_selection == "data_by_genres":
         if st.button('Load and Analyze data_by_genres.csv'):
-            data_w_genres = load_data("./data/data_by_genres.csv")
+            data_by_genres = load_data("./data/data_by_genres.csv")
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_by_genres.csv')
@@ -259,7 +261,7 @@ elif page_selection == "Data Analysis":
 
     elif dataset_selection == "data_by_artist":
         if st.button('Load and Analyze data_by_artist.csv'):
-            data_w_genres = load_data("./data/data_by_artist.csv")
+            data_by_artist = load_data("./data/data_by_artist.csv")
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_w_artist.csv')
@@ -269,7 +271,7 @@ elif page_selection == "Data Analysis":
             
     elif dataset_selection == "data_by_year":
         if st.button('Load and Analyze data_by_year.csv'):
-            data_w_genres = load_data("./data/data_by_year.csv")
+            data_by_year = load_data("./data/data_by_year.csv")
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_by_year.csv')
