@@ -1,3 +1,4 @@
+# Library importation
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -28,7 +29,7 @@ columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acous
 # Load dataset
 #uploaded_file = st.file_uploader("./data/data.csv", type="csv")
 #if uploaded_file is not None:
-data = pd.read_csv('data/data.csv')
+#data = pd.read_csv('data/data.csv')
 
 
 # Streamlit's cache mechanism to load datasets efficiently
@@ -91,6 +92,8 @@ if page_selection == "Dataset Recommendation":
         # Same logic as the on_button_click function but adapted for Streamlit
         selected_song_features = subset_song_features[subset_data['name'] == dataset_song_selector].values
         distances, indices = nn_model.kneighbors(selected_song_features, n_neighbors=50)
+        print(type(indices))
+        print(indices)
         collab_recommended = subset_song_names[indices[0]]
 
         cosine_similarities = cosine_similarity(selected_song_features, subset_song_features)
@@ -236,19 +239,19 @@ elif page_selection == "Data Analysis":
 
 
 
-        elif dataset_selection == "data_w_genres":
-            if st.button('Load and Analyze data_w_genres.csv'):
-                data_w_genres = load_data("./data/data_w_genres.csv")
-            
-                # Descriptive Statistics
-                st.subheader('Descriptive Statistics for data_w_genres.csv')
-                st.write(data_w_genres.describe())
-            
-                # Missing Data Visualization
-                st.subheader('Missing Data Visualization for data_w_genres.csv')
-                msno.matrix(data_w_genres)
-                st.pyplot()
-            
+    elif dataset_selection == "data_w_genres":
+        if st.button('Load and Analyze data_w_genres.csv'):
+            data_w_genres = load_data("./data/data_w_genres.csv")
+        
+            # Descriptive Statistics
+            st.subheader('Descriptive Statistics for data_w_genres.csv')
+            st.write(data_w_genres.describe())
+        
+            # Missing Data Visualization
+            st.subheader('Missing Data Visualization for data_w_genres.csv')
+            msno.matrix(data_w_genres)
+            st.pyplot()
+        
             
 
     elif dataset_selection == "data_by_genres":
@@ -267,7 +270,7 @@ elif page_selection == "Data Analysis":
 
     elif dataset_selection == "data_by_genres":
         if st.button('Load and Analyze data_by_genres.csv'):
-            data_w_genres = load_data("./data/data_by_genres.csv")
+            data_by_genres = load_data("./data/data_by_genres.csv")
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_w_genres.csv')
@@ -277,7 +280,7 @@ elif page_selection == "Data Analysis":
             
     elif dataset_selection == "data_by_year":
         if st.button('Load and Analyze data_by_year.csv'):
-            data_w_genres = load_data("./data/data_by_year.csv")
+            data_by_year = load_data("./data/data_by_year.csv")
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_by_year.csv')
@@ -287,4 +290,3 @@ elif page_selection == "Data Analysis":
 
 
 st.write("Thanks for using our application")
-    
