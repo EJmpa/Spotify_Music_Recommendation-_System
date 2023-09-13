@@ -20,15 +20,15 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="",
                                                            client_secret=""))
 
-<<<<<<< HEAD
+
 # Columns to load from the dataset
 columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acousticness', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo']
-=======
+
 # Load dataset
 uploaded_file = st.file_uploader("data/data.csv", type="csv")
 if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
->>>>>>> 9d3673308ee366b02b474b886bc371f67084ba8c
+
 
 # Streamlit's cache mechanism to load datasets efficiently
 @st.cache_resource
@@ -262,9 +262,7 @@ elif page_selection == "Data Analysis":
             st.subheader('Missing Data Visualization for data_by_genres.csv')
             msno.matrix(data_by_genres)
             st.pyplot()
-            
-            # ... 
-    # ... 
+          
 
     elif dataset_selection == "data_by_genres":
         if st.button('Load and Analyze data_by_genres.csv'):
@@ -276,9 +274,6 @@ elif page_selection == "Data Analysis":
             
             
             
-            # ... 
-    # ... 
-
     elif dataset_selection == "data_by_year":
         if st.button('Load and Analyze data_by_year.csv'):
             data_w_genres = load_data("./data/data_by_year.csv")
@@ -286,13 +281,9 @@ elif page_selection == "Data Analysis":
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_by_year.csv')
             st.write(data_by_year.describe())
-            
-                     
-    # ... 
+             
 
 
 
 st.write("Thanks for using our application")
     
-
-
