@@ -19,8 +19,8 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 
 # Spotify API Setup
 
-sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="5c31e738069944f5bfe87e77c50b4baa",
-                                                           client_secret="b7432a163d2b483babef62ec336efd4b"))
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="REPLACE_WITH_CORRECT_ID",
+                                                           client_secret="REPLACE_WITH_CORRECT_CLIENT_SECRET"))
 
 
 # Columns to load from the dataset
@@ -29,7 +29,7 @@ columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acous
 # Load dataset
 #uploaded_file = st.file_uploader("./data/data.csv", type="csv")
 #if uploaded_file is not None:
-#data = pd.read_csv('data/data.csv')
+
 
 
 # Streamlit's cache mechanism to load datasets efficiently
@@ -37,8 +37,8 @@ columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acous
 def load_data(filename):
     return pd.read_csv(filename)
 
-# Using the function to load the data
 data = load_data("./data/data.csv")
+
 
 # Function to scale features
 def scale_features(data):
@@ -168,7 +168,9 @@ elif page_selection == "Data Analysis":
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data.csv')
+            st.title('The first lines of the data dataset')
             st.write(data.head())
+            st.title('statistical summary of the dataset')
             st.write(data.describe())
             st.write(data.info())
             
@@ -239,42 +241,39 @@ elif page_selection == "Data Analysis":
 
 
 
-    elif dataset_selection == "data_w_genres":
-        if st.button('Load and Analyze data_w_genres.csv'):
-            data_w_genres = load_data("./data/data_w_genres.csv")
-        
-            # Descriptive Statistics
-            st.subheader('Descriptive Statistics for data_w_genres.csv')
-            st.write(data_w_genres.describe())
-        
-            # Missing Data Visualization
-            st.subheader('Missing Data Visualization for data_w_genres.csv')
-            msno.matrix(data_w_genres)
-            st.pyplot()
-        
+        elif dataset_selection == "data_w_genres":
+            if st.button('Load and Analyze data_w_genres.csv'):
+                data_w_genres = load_data("./data/data_w_genres.csv")
             
-
-    elif dataset_selection == "data_by_genres":
-        if st.button('Load and Analyze data_by_genres.csv'):
-            data_w_genres = load_data("./data/data_by_genres.csv")
+                # Descriptive Statistics
+                st.subheader('Descriptive Statistics for data_w_genres.csv')
+                st.write(data_w_genres.describe())
             
-            # Descriptive Statistics
-            st.subheader('Descriptive Statistics for data_by_genres.csv')
-            st.write(data_by_genres.describe())
+                # Missing Data Visualization
+                st.subheader('Missing Data Visualization for data_w_genres.csv')
+                msno.matrix(data_w_genres)
+                st.pyplot()
             
-            # Missing Data Visualization
-            st.subheader('Missing Data Visualization for data_by_genres.csv')
-            msno.matrix(data_by_genres)
-            st.pyplot()
-          
+            
 
     elif dataset_selection == "data_by_genres":
         if st.button('Load and Analyze data_by_genres.csv'):
             data_by_genres = load_data("./data/data_by_genres.csv")
             
             # Descriptive Statistics
-            st.subheader('Descriptive Statistics for data_w_genres.csv')
+            st.subheader('Descriptive Statistics for data_by_genres.csv')
             st.write(data_by_genres.describe())
+            
+            
+          
+
+    elif dataset_selection == "data_by_genres":
+        if st.button('Load and Analyze data_by_genres.csv'):
+            data_w_genres = load_data("./data/data_by_genres.csv")
+            
+            # Descriptive Statistics
+            st.subheader('Descriptive Statistics for data_w_artist.csv')
+            st.write(data_by_artist.describe())
             
             
             
