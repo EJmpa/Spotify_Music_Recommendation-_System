@@ -20,8 +20,15 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="",
                                                            client_secret=""))
 
+<<<<<<< HEAD
 # Columns to load from the dataset
 columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acousticness', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo']
+=======
+# Load dataset
+uploaded_file = st.file_uploader("data/data.csv", type="csv")
+if uploaded_file is not None:
+    data = pd.read_csv(uploaded_file)
+>>>>>>> 9d3673308ee366b02b474b886bc371f67084ba8c
 
 # Streamlit's cache mechanism to load datasets efficiently
 @st.cache_resource
