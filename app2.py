@@ -36,6 +36,7 @@ columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acous
 def load_data(filename):
     return pd.read_csv(filename)
 
+data = load_data("./data/data.csv")
 # Function to scale features
 def scale_features(data):
     features = data[['valence', 'energy', 'danceability', 'acousticness', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo']]
