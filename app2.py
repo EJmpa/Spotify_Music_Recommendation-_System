@@ -19,8 +19,8 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 
 # Spotify API Setup
 
-sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="",
-                                                           client_secret=""))
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="e18fafeb60a949d2a9b7d1efccabe69a",
+                                                           client_secret="739bbbed49864382a64a64ccd64ecdcc"))
 
 
 # Columns to load from the dataset
