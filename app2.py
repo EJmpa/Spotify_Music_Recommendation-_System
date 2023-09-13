@@ -28,7 +28,7 @@ columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acous
 # Load dataset
 #uploaded_file = st.file_uploader("./data/data.csv", type="csv")
 #if uploaded_file is not None:
-data = pd.read_csv('data/data.csv')
+#data = pd.read_csv('data/data.csv')
 
 
 # Streamlit's cache mechanism to load datasets efficiently
