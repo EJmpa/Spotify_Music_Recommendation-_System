@@ -165,65 +165,113 @@ elif page_selection == "Data Analysis":
     if dataset_selection == "data":
         if st.button('Load and Analyze data.csv'):
             data = load_data("./data/data.csv")
+            # Dataset Overview and Introduction
+            st.title("Spotify Dataset Analysis")
+            st.write("""
+            **Introduction**
+
+            Spotify, a global leader in music streaming, has revolutionized the way we experience music. With its vast collection spanning genres, moods, and languages, Spotify offers something for every listener. A key factor in Spotify's success is its ability to understand and cater to individual musical preferences. Behind this personalized experience lie sophisticated algorithms and a wealth of data on tracks and user interactions.
+
+            **Dataset Overview**
+
+            The dataset under analysis provides a detailed view of tracks available on Spotify, with the following attributes:
+
+            - **Valence**: A measure indicating the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g., happy, cheerful), while tracks with low valence sound more negative (e.g., sad, depressed).
+            - **Year**: The release year of the track.
+            - **Acousticness**: A confidence measure indicating whether the track is acoustic.
+            - **Artists**: The artists who performed the track.
+            - **Danceability**: Describes how suitable a track is for dancing based on a combination of musical elements.
+            - **Duration**: The total duration of the track in milliseconds.
+            - **Energy**: A measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy.
+            - **Explicit**: Indicates whether the track has explicit content.
+            - **Instrumentalness**: Predicts whether a track contains vocals. Higher values mean the track is more likely to be instrumental.
+            - **Key**: The key the track is in.
+            - **Liveness**: Detects the presence of a live audience in the recording.
+            - **Loudness**: The overall loudness of a track in decibels.
+            - **Mode**: Modality of the track. Major is represented by 1 and minor is 0.
+            - **Name**: The name of the track.
+            - **Popularity**: The popularity of the track on Spotify.
+            - **Release Date**: The date when the track was released.
+            - **Speechiness**: Detects the presence of spoken words in a track.
+            - **Tempo**: The overall estimated tempo of a track in beats per minute.
+
+            By analyzing this dataset, we aim to uncover insights into the musical and acoustic properties of tracks, understand trends over the years, and delve into the characteristics that make a track popular.
+            """)
+
+            # Data Cleaning    
+            def clean_data(data):
+                # Removing duplicates based on 'id'
+                data_cleaned = data.drop_duplicates(subset='id')
+                
+                # Convert release_date to datetime format
+                data_cleaned['release_date'] = pd.to_datetime(data_cleaned['release_date'], errors='coerce')
+                               
+                
+                # Filtering out rows where artists column is not a list
+                data_cleaned = data_cleaned[data_cleaned['artists'].str.startswith('[') & data_cleaned['artists'].str.endswith(']')]
+                
+                # Converting string representation of list to actual list for 'artists' column
+                data_cleaned['artists'] = data_cleaned['artists'].apply(eval)
+                
+                # Reordering columns
+                cols_order = ['id', 'name', 'year', 'artists', 'duration_ms', 'valence', 'acousticness', 'danceability', 'energy', 
+                            'instrumentalness', 'liveness', 'loudness', 'popularity', 'speechiness', 'tempo']
+                data_cleaned = data_cleaned[cols_order]
+                
+                return data_cleaned
+
+            st.title("Spotify Dataset Cleaning")
+        
+            # Displaying the data before cleaning
+            st.subheader("Data before cleaning")
+            st.write(data)
+
+            # Cleaning the data
+            cleaned_data = clean_data(data)
+
+            # Displaying the cleaned data
+            st.subheader("Data after cleaning")
+            st.write(cleaned_data)
+
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data.csv')
-            st.title('The first lines of the data dataset')
-            st.write(data.head())
             st.title('statistical summary of the dataset')
-            st.write(data.describe())
-            st.write(data.info())
+            st.write(cleaned_data.describe())
+
             
-            # Missing Data Visualization
-            st.subheader('Missing Data Visualization for data.csv')
-            st.write("The following matrix provides a visual representation of missing data in the dataset.")
-
-            # Create the figure and axis objects
+            # Missing Data Visualization using heatmap
+            st.subheader('Missing Data Visualization')
+            st.write("Yellow areas indicate missing data, while purple areas signify complete data. The heatmap suggests the dataset is relatively complete.")
             fig, ax = plt.subplots(figsize=(12, 8))
-
-            # Use the missingno matrix to visualize the data on the created axis
-            msno.matrix(data, ax=ax)
-
-            # Display the figure using st.pyplot()
+            sns.heatmap(cleaned_data.isnull(), cbar=False, cmap='viridis', yticklabels=False)
             st.pyplot(fig)
 
-            st.write("Conclusion: White lines in the matrix indicate missing data. If the matrix is mostly dark, it suggests that the dataset has minimal missing data.")
-
-            # Compute correlation only on numeric columns
+            # Correlation Matrix Visualization
             st.subheader('Correlation Matrix for Numeric Features')
-            st.write("The correlation matrix visualizes the relationships between numeric features.")
-            numeric_data = data.select_dtypes(include=[np.number])
-            corr = numeric_data.corr()
-
-            # Create a figure and axis, then plot the heatmap on this axis
-            fig, ax = plt.subplots(figsize=(12, 8))
-            sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1, ax=ax)
-
-            # Pass the figure explicitly to st.pyplot()
+            st.write("The correlation matrix visualizes the relationships between numeric features. The values in each cell represent the correlation coefficient between two variables.")
+            numeric_data = cleaned_data.select_dtypes(include=[np.number])  # Define numeric_data
+            corr_matrix = numeric_data.corr()
+            fig, ax = plt.subplots(figsize=(14, 10))
+            sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
             st.pyplot(fig)
+            #fig, ax = plt.subplots(figsize=(14, 10))
+            #corr_matrix = cleaned_data.select_dtypes(include=[np.number]).corr()      
+            #sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
+            #st.pyplot(fig)
 
-            st.write("Conclusion: Dark blue or red cells indicate strong correlations. This matrix helps in identifying relationships between different features.")
-            
-            # Histograms
+            # Histograms for Numeric Features
             st.subheader('Histograms for Features')
             st.write("Histograms help in understanding the distribution of data for each numeric feature.")
-            for col in numeric_data.columns:
-                fig = px.histogram(data, x=col, title=f'Histogram for {col}')
-                st.plotly_chart(fig)
-                st.write(f"Conclusion for {col}: This histogram provides insights into the distribution and frequency of values for {col}. It's important for understanding the nature of the data.")
+            numeric_columns = cleaned_data.select_dtypes(include=[np.number]).columns
+            for col in numeric_columns:
+                fig, ax = plt.subplots(figsize=(10, 6))
+                cleaned_data[col].hist(ax=ax, bins=30, edgecolor='black')
+                ax.set_title(f'Histogram for {col}')
+                st.pyplot(fig)
+                        
             
-            
-            # Correlation matrix heatmap
-            st.subheader('Correlation Matrix')
-            corr = data.corr()
-            mask = np.zeros_like(corr, dtype=np.bool)
-            mask[np.triu_indices_from(mask)] = True
-            fig, ax = plt.subplots(figsize=(10, 8))
-            sns.heatmap(corr, mask=mask, cmap="coolwarm", vmax=.3, center=0, square=True, linewidths=.5, cbar_kws={"shrink": .5})
-            st.pyplot(fig)
-            st.write("The heatmap displays correlations between features. Darker colors represent stronger correlations.")
-
-            # Box plots for numerical features
+             # Box plots for numerical features
             st.subheader('Box Plots for Numerical Features')
             for column in ['valence', 'energy', 'danceability', 'acousticness', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo']:
                 fig = px.box(data, y=column, title=f'Box plot of {column}')
@@ -247,13 +295,9 @@ elif page_selection == "Data Analysis":
         
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_w_genres.csv')
-            st.write(data_w_genres.describe())
+            st.write(data_w_genres.head())
         
-            # Missing Data Visualization
-            st.subheader('Missing Data Visualization for data_w_genres.csv')
-            msno.matrix(data_w_genres)
-            st.pyplot()
-        
+            
         
 
     elif dataset_selection == "data_by_genres":
@@ -262,7 +306,7 @@ elif page_selection == "Data Analysis":
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_by_genres.csv')
-            st.write(data_by_genres.describe())
+            st.write(data_by_genres.head())
             
             
           
@@ -273,7 +317,7 @@ elif page_selection == "Data Analysis":
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_w_artist.csv')
-            st.write(data_by_artist.describe())
+            st.write(data_by_artist.head())
             
             
             
@@ -283,7 +327,7 @@ elif page_selection == "Data Analysis":
             
             # Descriptive Statistics
             st.subheader('Descriptive Statistics for data_by_year.csv')
-            st.write(data_by_year.describe())
+            st.write(data_by_year.head())
              
 
 
