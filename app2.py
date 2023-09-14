@@ -231,7 +231,7 @@ elif page_selection == "Data Analysis":
 
             # Displaying the cleaned data
             st.subheader("Data after cleaning")
-            st.write(cleaned_data)
+            st.write(cleaned_data.head())
 
             
             # Descriptive Statistics
@@ -255,11 +255,7 @@ elif page_selection == "Data Analysis":
             fig, ax = plt.subplots(figsize=(14, 10))
             sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
             st.pyplot(fig)
-            #fig, ax = plt.subplots(figsize=(14, 10))
-            #corr_matrix = cleaned_data.select_dtypes(include=[np.number]).corr()      
-            #sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
-            #st.pyplot(fig)
-
+            
             # Histograms for Numeric Features
             st.subheader('Histograms for Features')
             st.write("Histograms help in understanding the distribution of data for each numeric feature.")
