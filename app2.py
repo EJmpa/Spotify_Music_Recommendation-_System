@@ -37,8 +37,8 @@ columns_to_use = ['name', 'artists', 'valence', 'energy', 'danceability', 'acous
 def load_data(filename):
     return pd.read_csv(filename)
 
-data = load_data("./data/data.csv")
 data_b_clean = load_data("./data/data.csv")
+data = data_b_clean.copy()
 
 
 # Function to scale features
