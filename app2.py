@@ -38,6 +38,7 @@ def load_data(filename):
     return pd.read_csv(filename)
 
 data = load_data("./data/data.csv")
+data_b_clean = data.copy()
 
 
 # Function to scale features
@@ -224,7 +225,7 @@ elif page_selection == "Data Analysis":
         
             # Displaying the data before cleaning
             st.subheader("Data before cleaning")
-            st.write(data)
+            st.write(data_b_clean)
 
             # Cleaning the data
             cleaned_data = clean_data(data)
