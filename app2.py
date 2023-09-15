@@ -38,7 +38,7 @@ def load_data(filename):
     return pd.read_csv(filename)
 
 data = load_data("./data/data.csv")
-data_b_clean = data.copy()
+data_b_clean = load_data("./data/data.csv")
 
 
 # Function to scale features
