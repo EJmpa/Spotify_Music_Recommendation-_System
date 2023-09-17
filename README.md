@@ -14,11 +14,13 @@ An interactive web application that leverages the Spotify API and machine learni
 1. Clone the Repository
 
 Run ➡️git clone https://github.com/EJmpa/Spotify_Music_Recommendation-_System.git
+
 Run ➡️cd spotify_music_recommendation_system
 
 2. Set up a Virtual Environment
 
 Run ➡️python -m venv venv
+
 Run ➡️source venv/bin/activate
 # On Windows use: venv\Scripts\activate
 
