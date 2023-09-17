@@ -14,7 +14,7 @@ An interactive web application that leverages the Spotify API and machine learni
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/EJmpa/Spotify_Music_Recommendation-_System.git
 cd spotify_music_recommendation_system
 ```
 
@@ -63,10 +63,6 @@ streamlit run app2.py
 ### Data Analysis:
 1. Choose a dataset from the sidebar.
 2. Load and view various analyses and visualizations based on the dataset.
-
-## 🤝 Contributing
-
-If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 ## 📜 License
 
