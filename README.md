@@ -1,80 +1,73 @@
-# Spotify_Music_Recommendation_System
-Spotify Music Recommendation System
+
+# Spotify Music Recommendation System 
 
 An interactive web application that leverages the Spotify API and machine learning algorithms to provide song recommendations based on mood.
-🎵 Features
 
-    Dataset Recommendation: Recommend songs from a provided dataset based on mood.
-    
-    API Recommendation: Use the Spotify API to fetch and recommend songs.
-    
-    Data Analysis: View data visualizations and analyses on various datasets related to Spotify songs.
+## 🎵 Features
 
-🛠 Installation & Setup
-1. Clone the Repository
+- **Dataset Recommendation**: Recommend songs from a provided dataset based on mood.
+- **API Recommendation**: Use the Spotify API to fetch and recommend songs.
+- **Data Analysis**: View data visualizations and analyses on various datasets related to Spotify songs.
 
-Run ➡️git clone https://github.com/EJmpa/Spotify_Music_Recommendation-_System.git
+## 🛠 Installation & Setup
 
-Run ➡️cd spotify_music_recommendation_system
+### 1. Clone the Repository
 
-2. Set up a Virtual Environment
+```bash
+git clone <repository-url>
+cd spotify_music_recommendation_system
+```
 
-Run ➡️python -m venv venv
+### 2. Set up a Virtual Environment
 
-Run ➡️source venv/bin/activate
+```bash
+python -m venv venv
+source venv/bin/activate
 # On Windows use: venv\Scripts\activate
+```
 
-3. Install the Required Packages
+### 3. Install the Required Packages
 
-Run ➡️pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
 
-4. Spotify API Setup
+### 4. Spotify API Setup
 
-    Register your application on the Spotify Developer Dashboard.
-   
-    Retrieve your client_id and client_secret.
-   
-    Set the environment variables:
+- Register your application on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications).
+- Retrieve your `client_id` and `client_secret`.
 
+```bash
 export SPOTIPY_CLIENT_ID='your_client_id'
 export SPOTIPY_CLIENT_SECRET='your_client_secret'
+```
 
-5. Run the Streamlit App
+### 5. Run the Streamlit App
 
-Run ➡️streamlit run app2.py
+```bash
+streamlit run app2.py
+```
 
-📋 Usage
-Dataset Recommendation:
+## 📋 Usage
 
-    Select a song from the dropdown.
-    
-    Choose a mood.
-    
-    Get a list of recommended songs based on your selection.
+### Dataset Recommendation:
+1. Select a song from the dropdown.
+2. Choose a mood.
+3. Get a list of recommended songs based on your selection.
 
-API Recommendation:
-    
-     Input a song name.
-     
-     Choose a mood.
-     
-     Get a list of recommended songs fetched from the Spotify API based on your input.
+### API Recommendation:
+1. Input a song name.
+2. Choose a mood.
+3. Get a list of recommended songs fetched from the Spotify API based on your input.
 
-Data Analysis:
+### Data Analysis:
+1. Choose a dataset from the sidebar.
+2. Load and view various analyses and visualizations based on the dataset.
 
-    Choose a dataset from the sidebar.
-    
-    Load and view various analyses and visualizations based on the dataset.
+## 🤝 Contributing
 
-📜 License
+If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-This project is licensed under the MIT License. See LICENSE for details.
+## 📜 License
 
-
-
-
-
-
-
-
-
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
